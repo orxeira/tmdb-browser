@@ -1,0 +1,21 @@
+import com.orxeira.buildsrc.Libs
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath Libs.androidGradlePlugin
+        classpath Libs.Kotlin.gradlePlugin
+        classpath Libs.AndroidX.Navigation.gradlePlugin
+        classpath Libs.gradleVersionsPlugin
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
