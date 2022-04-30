@@ -122,6 +122,5 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
-
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

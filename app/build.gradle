@@ -56,6 +56,7 @@ dependencies {
 
     implementation Libs.AndroidX.Room.runtime
     implementation Libs.AndroidX.Room.ktx
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.AndroidX.Room.compiler
 
     implementation Libs.Koin.android
@@ -70,6 +71,8 @@ dependencies {
     implementation Libs.AndroidX.Paging.runtimeKtx
 
     implementation Libs.AndroidX.palette
+    implementation Libs.AndroidX.viewPager2
+
 
     testImplementation Libs.JUnit.junit
     androidTestImplementation Libs.AndroidX.Test.Ext.junit

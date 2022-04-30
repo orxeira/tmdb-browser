@@ -22,6 +22,8 @@ object Libs {
         const val material = "com.google.android.material:material:1.5.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
         const val palette = "androidx.palette:palette-ktx:1.0.0"
+        const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
+
 
         object Activity {
             private const val version = "1.4.0"

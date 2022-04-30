@@ -25,16 +25,16 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/go_to_detail"
-            app:destination="@id/detailFragment"
+            app:destination="@id/detailListFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.orxeira.tmdb_browser.ui.detail.DetailFragment"
-        android:label="DetailFragment" >
+        android:id="@+id/detailListFragment"
+        android:name="com.orxeira.tmdb_browser.ui.detail.DetailListFragment"
+        android:label="DetailListFragment" >
         <argument
             android:name="tvShow"
             app:argType="com.orxeira.tmdb_browser.domain.TvShow" />

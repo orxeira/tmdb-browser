@@ -11,7 +11,8 @@ import com.orxeira.tmdb_browser.data.database.TvShowRoomDatasource
 import com.orxeira.tmdb_browser.data.server.TvShowRemoteDataSource
 import com.orxeira.tmdb_browser.data.server.TvShowServerDataSource
 import com.orxeira.tmdb_browser.domain.TvShow
-import com.orxeira.tmdb_browser.ui.detail.DetailViewModel
+import com.orxeira.tmdb_browser.ui.detail.DetailListViewModel
+import com.orxeira.tmdb_browser.ui.detail.item.DetailViewModel
 import com.orxeira.tmdb_browser.ui.main.MainViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
@@ -47,5 +48,6 @@ private val appModule = module {
     factory { PagingRepository(get()) }
 
     viewModel { MainViewModel(get()) }
+    viewModel { (tvShow: TvShow) -> DetailListViewModel(get(), tvShow) }
     viewModel { (tvShow: TvShow) -> DetailViewModel(tvShow) }
 }

@@ -1,4 +1,4 @@
-package com.orxeira.tmdb_browser.ui.detail
+package com.orxeira.tmdb_browser.ui.detail.item
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
