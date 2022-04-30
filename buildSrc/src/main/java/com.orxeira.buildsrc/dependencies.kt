@@ -3,7 +3,6 @@ package com.orxeira.buildsrc
 object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.1.3"
     const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.42.0"
-    const val playServicesLocation = "com.google.android.gms:play-services-location:19.0.1"
 
     object Kotlin {
         private const val version = "1.6.21"
@@ -51,7 +50,7 @@ object Libs {
 
         object Paging {
             private const val paging_version = "3.1.1"
-            const val paging = "androidx.paging:paging-runtime-ktx:$paging_version"
+            const val runtimeKtx = "androidx.paging:paging-runtime-ktx:$paging_version"
         }
 
         object Test {
