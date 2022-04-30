@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import com.orxeira.tmdb_browser.R
 import com.orxeira.tmdb_browser.common.withLoadStateAdapters
@@ -53,9 +54,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun setupOservers() {
         viewModel.getPopulartvShows()
         viewLifecycleOwner.lifecycleScope.launch {
-            launch {
-                viewModel.tvShows.collect(::loadDataForRV)
-            }
+            viewModel.tvShows.collect(::loadDataForRV)
         }
     }
 
@@ -66,6 +65,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun onTvShowClicked(tvShow: TvShow) {
-        TODO("Not yet implemented")
+        val action = MainFragmentDirections.goToDetail(tvShow)
+        findNavController().navigate(action)
     }
 }

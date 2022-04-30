@@ -17,7 +17,8 @@ data class RemoteTvShow(
     @SerializedName("poster_path") val posterPath: String,
     @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("vote_average") val voteAverage: Float,
-    @SerializedName("first_air_date") val firstAirDate: String,
+    @SerializedName("first_air_date") val releaseDate: String,
+
 )
 
 fun List<RemoteTvShow>.toDomainModel(): List<TvShow> =
@@ -30,5 +31,6 @@ fun RemoteTvShow.toDomainModel(): TvShow =
         overview,
         "https://image.tmdb.org/t/p/w185/$posterPath",
         "https://image.tmdb.org/t/p/w780/${backdropPath ?: posterPath}",
-        voteAverage
+        voteAverage,
+        releaseDate
     )

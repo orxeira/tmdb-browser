@@ -21,6 +21,7 @@ object Libs {
         const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
         const val material = "com.google.android.material:material:1.5.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
+        const val palette = "androidx.palette:palette-ktx:1.0.0"
 
         object Activity {
             private const val version = "1.4.0"
@@ -88,11 +89,6 @@ object Libs {
         const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
     }
 
-    object Arrow {
-        private const val version = "1.1.2"
-        const val core = "io.arrow-kt:arrow-core:$version"
-    }
-
     object JUnit {
         private const val version = "4.13.2"
         const val junit = "junit:junit:$version"
@@ -102,8 +98,6 @@ object Libs {
         const val inline = "org.mockito:mockito-inline:4.5.1"
         const val kotlin = "org.mockito.kotlin:mockito-kotlin:4.0.0"
     }
-
-
 
     const val turbine = "app.cash.turbine:turbine:0.7.0"
 }

@@ -42,15 +42,3 @@ fun <T : Any, V : RecyclerView.ViewHolder> PagingDataAdapter<T, V>.withLoadState
 
     return ConcatAdapter(header, this, footer)
 }
-
-//fun <T> LifecycleOwner.launchAndCollect(
-//    flow: Flow<T>,
-//    state: Lifecycle.State = Lifecycle.State.STARTED,
-//    body: (T) -> Unit
-//) {
-//    lifecycleScope.launch {
-//        this@launchAndCollect.repeatOnLifecycle(state) {
-//            flow.collect(body)
-//        }
-//    }
-//}

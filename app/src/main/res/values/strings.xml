@@ -3,6 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title">title</string>
     <string name="error">Error</string>
-    <string name="retry">Volver intentar</string>
+    <string name="retry">Retry</string>
+    <string name="summary">Summary</string>
+    <string name="release_date">Release Date: %s</string>
+    <string name="rating">%s/10</string>
 
 </resources>

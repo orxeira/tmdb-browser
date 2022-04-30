@@ -1,7 +1,9 @@
 package com.orxeira.tmdb_browser.domain
 
-import com.orxeira.tmdb_browser.data.database.DbTvShow
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class TvShow(
     val id: Int,
     val name: String,
@@ -9,4 +11,5 @@ data class TvShow(
     val posterPath: String,
     val backdropPath: String,
     val voteAverage: Float,
-)
+    val releaseDate: String
+): Parcelable

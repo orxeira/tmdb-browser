@@ -11,7 +11,8 @@ data class DbTvShow(
     val overview: String,
     val posterPath: String,
     val backdropPath: String,
-    val voteAverage: Float
+    val voteAverage: Float,
+    val releaseDate: String
 )
 
 fun DbTvShow.toDomain()= TvShow(
@@ -20,7 +21,8 @@ fun DbTvShow.toDomain()= TvShow(
     overview,
     posterPath,
     backdropPath,
-    voteAverage
+    voteAverage,
+    releaseDate
 )
 
 fun TvShow.toRoom() = DbTvShow(
@@ -29,5 +31,6 @@ fun TvShow.toRoom() = DbTvShow(
     overview,
     posterPath,
     backdropPath,
-    voteAverage
+    voteAverage,
+    releaseDate
 )

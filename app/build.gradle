@@ -69,6 +69,8 @@ dependencies {
 
     implementation Libs.AndroidX.Paging.runtimeKtx
 
+    implementation Libs.AndroidX.palette
+
     testImplementation Libs.JUnit.junit
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Test.Espresso.core

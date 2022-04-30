@@ -1,0 +1,52 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="tvShow"
+            type="com.orxeira.tmdb_browser.domain.TvShow" />
+
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/column_height"
+        android:elevation="@dimen/z_app_bar"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="@dimen/z_app_bar"
+        app:ImageUrl="@{tvShow.posterPath}"
+        tools:ignore="KeyboardInaccessibleWidget">
+
+        <ImageView
+            android:id="@+id/item_poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:ignore="contentDescription" />
+
+        <View
+            android:id="@+id/title_background"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:alpha="0.8"
+            android:gravity="center"
+            tools:background="@color/black_translucent_60" />
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@{tvShow.name}"
+            android:textSize="12sp" />
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
