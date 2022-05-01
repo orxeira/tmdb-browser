@@ -30,6 +30,8 @@ class DetailListFragment : Fragment(R.layout.fragment_detail_list) {
 
         _binding = FragmentDetailListBinding.bind(view)
 
+        binding.pager.setPageTransformer(DepthPageTransformer())
+
         viewLifecycleOwner.lifecycleScope.launch {
             launch {
                 viewModel.tvShows.collectLatest {

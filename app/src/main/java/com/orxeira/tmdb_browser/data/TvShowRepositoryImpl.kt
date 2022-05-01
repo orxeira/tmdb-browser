@@ -3,6 +3,7 @@ package com.orxeira.tmdb_browser.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.orxeira.tmdb_browser.common.addOriginal
 import com.orxeira.tmdb_browser.data.database.TvShowLocalDatasource
 import com.orxeira.tmdb_browser.data.paging.TvShowPagingSource
 import com.orxeira.tmdb_browser.data.server.TvShowRemoteDataSource
@@ -31,9 +32,3 @@ class TvShowRepository(
     }.flowOn(Dispatchers.IO)
 }
 
-fun List<TvShow>.addOriginal(tvShow: TvShow): List<TvShow> {
-    val list = this.toMutableList()
-    list.add(0,tvShow)
-    return list.toMutableList()
-
-}

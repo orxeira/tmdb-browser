@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavArgs
 import androidx.navigation.NavController
@@ -15,6 +18,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.orxeira.tmdb_browser.domain.TvShow
 
 fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url).into(this)
@@ -41,4 +45,17 @@ fun <T : Any, V : RecyclerView.ViewHolder> PagingDataAdapter<T, V>.withLoadState
     }
 
     return ConcatAdapter(header, this, footer)
+}
+
+fun List<TvShow>.addOriginal(tvShow: TvShow): List<TvShow> {
+    val list = this.sortedByDescending { it.voteAverage }.toMutableList()
+    list.add(0, tvShow)
+    return list.distinctBy { it.id }
+}
+
+fun AppCompatActivity.setupActionBar(toolbar: Toolbar, action: ActionBar.() -> Unit) {
+    setSupportActionBar(toolbar)
+    supportActionBar?.run {
+        action()
+    }
 }

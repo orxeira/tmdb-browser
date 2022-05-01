@@ -26,6 +26,7 @@ class TvShowPagingSource constructor(
         val pageNumber = params.key ?: INITIAL_PAGE_INDEX_REMOTE
         return try {
             val response = service.getTopRatedTvShows(pageNumber)
+            delay(1000L)
             val pagedResponse = response.body()
             val data = pagedResponse?.results?.map { it.toDomainModel() }.also { itr ->
                 if (itr != null) {
@@ -47,6 +48,7 @@ class TvShowPagingSource constructor(
         }
     }
 
+    //In case of error, we load whatever we have stored.
     private suspend fun getLocalData(
         params: LoadParams<Int>,
         e: Exception

@@ -1,5 +1,6 @@
 package com.orxeira.tmdb_browser.ui.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData

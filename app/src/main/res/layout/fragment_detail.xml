@@ -14,6 +14,7 @@
         android:id="@+id/details_motion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/design_default_color_on_secondary"
         app:layoutDescription="@xml/scene_show_details">
 
         <ImageView
@@ -41,7 +42,9 @@
             android:scaleType="centerCrop"
             android:transformPivotX="0px"
             android:transformPivotY="0px"
-            app:imageUrl="@{tvShow.posterPath}" />
+            app:imageUrl="@{tvShow.posterPath}"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="200dp" />
 
         <!-- Needed to fill a rounding error gap in MotionLayout. See https://issuetracker.google.com/112728689 -->
         <View
