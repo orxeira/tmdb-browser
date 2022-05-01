@@ -8,16 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.orxeira.tmdb_browser.R
-import com.orxeira.tmdb_browser.common.getNavController
 import com.orxeira.tmdb_browser.common.popToNewDestinationBase
 import kotlinx.coroutines.delay
 
 
 class SplashFragment : Fragment() {
-
-    private val navController by lazy {
-        getNavController(R.id.nv_host_fragment)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

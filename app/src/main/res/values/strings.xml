@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">tmdb-browser</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">TMDB Browser</string>
     <string name="title">title</string>
     <string name="error">Error</string>
     <string name="retry">Retry</string>

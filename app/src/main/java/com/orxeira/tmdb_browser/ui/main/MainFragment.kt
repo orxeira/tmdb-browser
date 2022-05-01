@@ -11,8 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import com.orxeira.tmdb_browser.R
-import com.orxeira.tmdb_browser.common.error.Error
-import com.orxeira.tmdb_browser.common.error.ErrorEntity
 import com.orxeira.tmdb_browser.common.shortToast
 import com.orxeira.tmdb_browser.common.withLoadStateAdapters
 import com.orxeira.tmdb_browser.databinding.FragmentMainBinding
@@ -61,7 +59,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             launch {
-                viewModel.tvShows.collect{
+                viewModel.tvShows.collect {
                     loadRecyclerData(it)
                 }
             }
@@ -103,18 +101,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 viewModel.clearTvShowState()
                 findNavController().navigate(action)
             }
-            is TvShowState.Error -> {
-                errorStateHandler(state.error)
-            }
             else -> {
             }
         }
     }
-
-    private fun errorStateHandler(error: Error) =
-        when (error) {
-            is ErrorEntity -> shortToast(error.message)
-            else -> shortToast(getString(R.string.error_connection))
-        }
-
 }

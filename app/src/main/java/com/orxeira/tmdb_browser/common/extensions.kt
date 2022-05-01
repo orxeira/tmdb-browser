@@ -19,8 +19,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.orxeira.tmdb_browser.common.error.EMPTY_STRING
 import com.orxeira.tmdb_browser.domain.TvShow
+
+const val EMPTY_STRING = ""
 
 fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url).into(this)
@@ -29,7 +30,6 @@ fun ImageView.loadUrl(url: String) {
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
-fun Fragment.getNavController(id: Int) = requireActivity().findNavController(id)
 fun NavController.popToNewDestinationBase(whereGo: Int, args: NavArgs? = null) {
     this.navigate(
         whereGo, null,
@@ -62,6 +62,6 @@ fun AppCompatActivity.setupActionBar(toolbar: Toolbar, action: ActionBar.() -> U
     }
 }
 
-fun Fragment.shortToast(msg: String = EMPTY_STRING){
+fun Fragment.shortToast(msg: String = EMPTY_STRING) {
     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
 }
