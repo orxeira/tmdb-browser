@@ -12,6 +12,12 @@ import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ * The main paging source for the TvShow list. This source acts as a repository as it handles where
+ * to get it's data from. In this case we have opted for getting all of our data from our remote
+ * datasource and only relying in our local data source in case of error.
+ *
+ */
 class TvShowPagingSource constructor(
     private val service: TvShowRemoteDataSource,
     private val localDataSource: TvShowLocalDatasource

@@ -1,5 +1,8 @@
 package com.orxeira.tmdb_browser.data.server
 
+/**
+ * Specific implementation for the remote datasource that uses Retrofit as a provider.
+ */
 class TvShowServerDataSource(
     private val apiKey: String
 ) : TvShowRemoteDataSource {

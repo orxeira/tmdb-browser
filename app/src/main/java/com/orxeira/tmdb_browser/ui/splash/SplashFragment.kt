@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.orxeira.tmdb_browser.R
-import com.orxeira.tmdb_browser.common.popToNewDestinationBase
 import kotlinx.coroutines.delay
 
 /**
@@ -28,7 +27,8 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenCreated {
             delay(2000L)
-            findNavController().popToNewDestinationBase(R.id.go_to_list)
+            val action = SplashFragmentDirections.goToList()
+            findNavController().navigate(action)
         }
     }
 }

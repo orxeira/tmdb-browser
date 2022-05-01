@@ -12,14 +12,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.orxeira.tmdb_browser.R
-import com.orxeira.tmdb_browser.common.loadUrl
 
 /**
  * Basic image loading binding adapter valid for any view.
  */
 @BindingAdapter("imageUrl")
 fun ImageView.bindImageItem(url: String?) {
-    if (url != null) loadUrl(url)
+    if (url != null) Glide.with(context).load(url).into(this)
 }
 
 /**

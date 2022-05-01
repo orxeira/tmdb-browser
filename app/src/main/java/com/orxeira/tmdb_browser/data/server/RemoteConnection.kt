@@ -6,6 +6,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
+/**
+ * This object handles the creation and configuration of the Retrofit service.
+ */
 object RemoteConnection {
 
     private val okHttpClient = HttpLoggingInterceptor().run {
