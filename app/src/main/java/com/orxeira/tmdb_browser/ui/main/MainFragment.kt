@@ -89,7 +89,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun onTvShowClicked(tvShow: TvShow) {
-        val action = MainFragmentDirections.goToDetail(tvShow)
+        val action = MainFragmentDirections.listToDetail(tvShow)
         findNavController().navigate(action)
     }
 

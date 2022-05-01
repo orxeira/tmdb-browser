@@ -7,6 +7,7 @@ object Libs {
     object Kotlin {
         private const val version = "1.6.21"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
+        const val test = "org.jetbrains.kotlin:kotlin-test-junit:$version"
 
         object Coroutines {
             private const val version = "1.6.1"

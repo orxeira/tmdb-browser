@@ -1,9 +1,9 @@
 package com.orxeira.tmdb_browser.data.server
 
-import retrofit2.Response
+import com.orxeira.tmdb_browser.domain.TvShow
 
 interface TvShowRemoteDataSource {
-    suspend fun getTopRatedTvShows(page:Int): Response<RemoteResult>
+    suspend fun getTopRatedTvShows(page: Int): List<TvShow>
 
-    suspend fun getSimilarShows(id: Int): Response<RemoteResult>
+    suspend fun getSimilarShows(id: Int): List<TvShow>
 }

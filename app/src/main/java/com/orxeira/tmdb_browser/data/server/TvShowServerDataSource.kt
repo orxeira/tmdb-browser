@@ -9,9 +9,13 @@ class TvShowServerDataSource(
     override suspend fun getTopRatedTvShows(page: Int) =
         RemoteConnection.service
             .listTopRatedTvShows(apiKey, page)
+            .results
+            .toDomainModel()
+
 
     override suspend fun getSimilarShows(id: Int) =
         RemoteConnection.service
             .getSimilarShows(id,apiKey)
-
+            .results
+            .toDomainModel()
 }

@@ -15,7 +15,8 @@ data class DbTvShow(
     val releaseDate: String
 )
 
-fun DbTvShow.toDomain()= TvShow(
+fun List<DbTvShow>.toDomain() = this.map { it.toDomain() }
+fun DbTvShow.toDomain() = TvShow(
     id,
     name,
     overview,
@@ -25,6 +26,7 @@ fun DbTvShow.toDomain()= TvShow(
     releaseDate
 )
 
+fun List<TvShow>.toRoom() = this.map { it.toRoom() }
 fun TvShow.toRoom() = DbTvShow(
     id,
     name,

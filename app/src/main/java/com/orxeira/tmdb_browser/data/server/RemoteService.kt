@@ -10,18 +10,18 @@ interface RemoteService {
     @GET("tv/top_rated")
     suspend fun listTopRatedTvShows(
         @Query("api_key") apiKey: String
-    ): Response<RemoteResult>
+    ): RemoteResult
 
     @GET("tv/top_rated")
     suspend fun listTopRatedTvShows(
         @Query("api_key") apiKey: String,
         @Query("page") page: Int?
-    ): Response<RemoteResult>
+    ): RemoteResult
 
     @GET("tv/{id}/similar")
     suspend fun getSimilarShows(
         @Path("id") id: Int,
         @Query("api_key") apiKey: String
-    ): Response<RemoteResult>
+    ): RemoteResult
 
 }

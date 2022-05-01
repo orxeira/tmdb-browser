@@ -3,10 +3,8 @@ package com.orxeira.tmdb_browser.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.orxeira.tmdb_browser.data.database.TvShowLocalDatasource
-import com.orxeira.tmdb_browser.data.database.toDomain
 import com.orxeira.tmdb_browser.data.database.toRoom
 import com.orxeira.tmdb_browser.data.server.TvShowRemoteDataSource
-import com.orxeira.tmdb_browser.data.server.toDomainModel
 import com.orxeira.tmdb_browser.domain.TvShow
 import kotlinx.coroutines.delay
 import retrofit2.HttpException
@@ -19,7 +17,7 @@ import java.io.IOException
  *
  */
 class TvShowPagingSource constructor(
-    private val service: TvShowRemoteDataSource,
+    private val remoteDataSource: TvShowRemoteDataSource,
     private val localDataSource: TvShowLocalDatasource
 ) : PagingSource<Int, TvShow>() {
 
@@ -31,17 +29,14 @@ class TvShowPagingSource constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TvShow> {
         val pageNumber = params.key ?: INITIAL_PAGE_INDEX_REMOTE
         return try {
-            val response = service.getTopRatedTvShows(pageNumber)
+            val response = remoteDataSource.getTopRatedTvShows(pageNumber)
             delay(1000L)
-            val pagedResponse = response.body()
-            val data = pagedResponse?.results?.map { it.toDomainModel() }.also { itr ->
-                if (itr != null) {
-                    itr.map { it.toRoom() }
-                    localDataSource.addTvShows(itr.map { it.toRoom() })
-                }
+            response.also { itr ->
+                itr.toRoom()
+                localDataSource.addTvShows(itr)
             }
             LoadResult.Page(
-                data = data.orEmpty(),
+                data = response,
                 prevKey = null,
                 nextKey = pageNumber + 1
             )
@@ -60,8 +55,7 @@ class TvShowPagingSource constructor(
         e: Exception
     ): LoadResult<Int, TvShow> {
         val pageNumberLocal = params.key ?: INITIAL_PAGE_INDEX
-        val randomTvShow = localDataSource.getTvShows(params.loadSize)
-        val result = randomTvShow.map { it.toDomain() }
+        val result = localDataSource.getTvShows(params.loadSize)
         return if (result.isNotEmpty()) {
             LoadResult.Page(
                 data = result,
@@ -79,6 +73,4 @@ class TvShowPagingSource constructor(
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
-
-
 }

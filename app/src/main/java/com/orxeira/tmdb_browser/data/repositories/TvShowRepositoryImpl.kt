@@ -38,8 +38,8 @@ class TvShowRepository(
      * Given a tvShow, it gets a list of similar shows.
      */
     suspend fun getSimilarShows(tvShow: TvShow): Flow<List<TvShow>> = flow {
-        val results = remoteDataSource.getSimilarShows(tvShow.id).body()!!.results.toDomainModel().addOriginal(tvShow)
+        val results = remoteDataSource.getSimilarShows(tvShow.id).addOriginal(tvShow)
         emit(results)
-    }.flowOn(Dispatchers.IO)
+    }
 }
 
