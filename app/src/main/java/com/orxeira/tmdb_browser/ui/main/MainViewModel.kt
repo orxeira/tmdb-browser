@@ -3,7 +3,7 @@ package com.orxeira.tmdb_browser.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.orxeira.tmdb_browser.data.PagingRepository
+import com.orxeira.tmdb_browser.data.usecases.GetTvShowPagingUseCase
 import com.orxeira.tmdb_browser.domain.TvShow
 import com.orxeira.tmdb_browser.ui.TvShowState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 
 class MainViewModel(
-    private val pagingRepository: PagingRepository
+    private val getTvShowPagingUseCase: GetTvShowPagingUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<TvShowState>(TvShowState.Nothing)
@@ -24,7 +24,7 @@ class MainViewModel(
 
     fun getPopulartvShows() {
         viewModelScope.launch {
-            pagingRepository.tvShowPaging.invoke().collectLatest { tvShows ->
+            getTvShowPagingUseCase().collectLatest { tvShows ->
                 _tvShows.value = tvShows
             }
         }

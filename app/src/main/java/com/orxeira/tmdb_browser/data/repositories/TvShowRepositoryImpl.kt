@@ -1,4 +1,4 @@
-package com.orxeira.tmdb_browser.data
+package com.orxeira.tmdb_browser.data.repositories
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
