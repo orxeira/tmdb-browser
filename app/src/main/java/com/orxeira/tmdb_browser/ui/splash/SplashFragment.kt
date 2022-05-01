@@ -11,7 +11,10 @@ import com.orxeira.tmdb_browser.R
 import com.orxeira.tmdb_browser.common.popToNewDestinationBase
 import kotlinx.coroutines.delay
 
-
+/**
+ * A basic spash screen with a 2s delay. It's just here for aesthetic purposes but we could start
+ * loading data at this point to save time for a better user experience.
+ */
 class SplashFragment : Fragment() {
 
     override fun onCreateView(

@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.orxeira.tmdb_browser.R
 import com.orxeira.tmdb_browser.databinding.ItemErrorBinding
 
+/**
+ * Basic LoadStateAdapter to handle loading errors. In case the paging data returns an error
+ * this adapter will set it's own error_item and handle it's retry event
+ */
 class LoadItemAdapter(
     private val retry: () -> Unit
 ) : LoadStateAdapter<LoadItemAdapter.LoadStateViewHolder>() {

@@ -31,6 +31,10 @@ fun Application.initDi() {
     }
 }
 
+/**
+ * This is our dependency injection module. We are using Koin 3.1 so we cannot use annotations yet.
+ */
+
 private val appModule = module {
     single(named("api_key")) { androidApplication().getString(R.string.api_key) }
     single {

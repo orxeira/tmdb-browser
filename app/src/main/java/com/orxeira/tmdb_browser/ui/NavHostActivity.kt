@@ -6,6 +6,9 @@ import android.view.MenuItem
 import androidx.navigation.findNavController
 import com.orxeira.tmdb_browser.R
 
+/**
+ * The main navigation activity. The whole navigation graph gets loaded from this activity.
+ */
 class NavHostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

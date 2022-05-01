@@ -3,6 +3,10 @@ package com.orxeira.tmdb_browser.ui.detail
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 
+/**
+ * This class adds a transition animation for the viewPager2.
+ * Source: https://developer.android.com/training/animation/screen-slide-2
+ */
 private const val MIN_SCALE = 0.75f
 
 class DepthPageTransformer : ViewPager2.PageTransformer {

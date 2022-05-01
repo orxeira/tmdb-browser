@@ -11,17 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import com.orxeira.tmdb_browser.R
-import com.orxeira.tmdb_browser.common.shortToast
 import com.orxeira.tmdb_browser.common.withLoadStateAdapters
 import com.orxeira.tmdb_browser.databinding.FragmentMainBinding
 import com.orxeira.tmdb_browser.domain.TvShow
-import com.orxeira.tmdb_browser.ui.TvShowState
 import com.orxeira.tmdb_browser.ui.main.adapter.LoadItemAdapter
 import com.orxeira.tmdb_browser.ui.main.adapter.PagingTvShowAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/**
+ * A Fragment that is reponsible for showing a list of TvShows with pagination.
+ */
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private var _binding: FragmentMainBinding? = null
@@ -29,6 +30,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by viewModel()
 
+    /**
+     * The paging data adapter for the recyclerView.
+     */
     private val adapter = PagingTvShowAdapter(::onTvShowClicked)
 
     override fun onCreateView(
@@ -47,6 +51,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         setupOservers()
     }
 
+    /**
+     * A LoadStateAdapter is added to the recyclerView to handle loading states.
+     */
     private fun setupView() = with(binding) {
         recycler.adapter = adapter.withLoadStateAdapters(
             LoadItemAdapter(retry = adapter::retry),
@@ -54,6 +61,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         )
     }
 
+    /**
+     * This method initialises the collect function for out tvShow Flow and tells the ViewModel to
+     * load the data for our recycler view.
+     */
     private fun setupOservers() {
         viewModel.getPopulartvShows()
 
@@ -62,9 +73,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 viewModel.tvShows.collect {
                     loadRecyclerData(it)
                 }
-            }
-            launch {
-                viewModel.state.collect(::stateHandler)
             }
         }
     }
@@ -81,28 +89,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun onTvShowClicked(tvShow: TvShow) {
-        viewModel.setTvShow(tvShow)
+        val action = MainFragmentDirections.goToDetail(tvShow)
+        findNavController().navigate(action)
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onResume() {
         super.onResume()
         requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
-
-    private fun stateHandler(state: TvShowState) {
-        binding.prBar.visibility = View.GONE
-        when (state) {
-            is TvShowState.Loading -> {
-                binding.prBar.visibility = View.VISIBLE
-            }
-            is TvShowState.SuccessTvShow -> {
-                val action = MainFragmentDirections.goToDetail(state.data)
-                viewModel.clearTvShowState()
-                findNavController().navigate(action)
-            }
-            else -> {
-            }
-        }
     }
 }

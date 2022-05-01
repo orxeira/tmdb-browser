@@ -10,6 +10,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+/**
+ * Very simple ViewModel with a flow and a use case. The use case is called on init and the result
+ * updates the flow. In this case, the ViewModel receives the tvShow as a parameter.
+ */
 class DetailListViewModel(
     private val getSimilarShowsUseCase: GetSimilarShowsUseCase,
     private val tvShow: TvShow,
