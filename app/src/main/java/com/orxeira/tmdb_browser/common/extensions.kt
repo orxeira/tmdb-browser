@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.orxeira.tmdb_browser.common.error.EMPTY_STRING
 import com.orxeira.tmdb_browser.domain.TvShow
 
 fun ImageView.loadUrl(url: String) {
@@ -58,4 +60,8 @@ fun AppCompatActivity.setupActionBar(toolbar: Toolbar, action: ActionBar.() -> U
     supportActionBar?.run {
         action()
     }
+}
+
+fun Fragment.shortToast(msg: String = EMPTY_STRING){
+    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
 }

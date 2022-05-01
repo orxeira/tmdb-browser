@@ -1,5 +1,7 @@
 package com.orxeira.tmdb_browser.ui.main
 
+import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +11,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import com.orxeira.tmdb_browser.R
+import com.orxeira.tmdb_browser.common.error.Error
+import com.orxeira.tmdb_browser.common.error.ErrorEntity
+import com.orxeira.tmdb_browser.common.shortToast
 import com.orxeira.tmdb_browser.common.withLoadStateAdapters
 import com.orxeira.tmdb_browser.databinding.FragmentMainBinding
 import com.orxeira.tmdb_browser.domain.TvShow
+import com.orxeira.tmdb_browser.ui.TvShowState
 import com.orxeira.tmdb_browser.ui.main.adapter.LoadItemAdapter
 import com.orxeira.tmdb_browser.ui.main.adapter.PagingTvShowAdapter
 import kotlinx.coroutines.flow.collect
@@ -52,19 +58,63 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun setupOservers() {
         viewModel.getPopulartvShows()
+
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.tvShows.collect(::loadDataForRV)
+            launch {
+                viewModel.tvShows.collect{
+                    loadRecyclerData(it)
+                }
+            }
+            launch {
+                viewModel.state.collect(::stateHandler)
+            }
         }
     }
 
-    private suspend fun loadDataForRV(data: PagingData<TvShow>) {
+    private suspend fun loadRecyclerData(data: PagingData<TvShow>) {
         binding.apply {
             adapter.submitData(data)
         }
     }
 
-    private fun onTvShowClicked(tvShow: TvShow) {
-        val action = MainFragmentDirections.goToDetail(tvShow)
-        findNavController().navigate(action)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
+
+    private fun onTvShowClicked(tvShow: TvShow) {
+        viewModel.setTvShow(tvShow)
+    }
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    override fun onResume() {
+        super.onResume()
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    }
+
+    private fun stateHandler(state: TvShowState) {
+        binding.prBar.visibility = View.GONE
+        when (state) {
+            is TvShowState.Loading -> {
+                binding.prBar.visibility = View.VISIBLE
+            }
+            is TvShowState.SuccessTvShow -> {
+                val action = MainFragmentDirections.goToDetail(state.data)
+                viewModel.clearTvShowState()
+                findNavController().navigate(action)
+            }
+            is TvShowState.Error -> {
+                errorStateHandler(state.error)
+            }
+            else -> {
+            }
+        }
+    }
+
+    private fun errorStateHandler(error: Error) =
+        when (error) {
+            is ErrorEntity -> shortToast(error.message)
+            else -> shortToast(getString(R.string.error_connection))
+        }
+
 }
