@@ -27,9 +27,11 @@ class TvShowPagingSource constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TvShow> {
-        val pageNumber = params.key ?: INITIAL_PAGE_INDEX_REMOTE
+        val pageNumber: Int = if (params.key == null || params.key == 0) INITIAL_PAGE_INDEX_REMOTE
+        else params.key!!
         return try {
             val response = remoteDataSource.getTopRatedTvShows(pageNumber)
+
             delay(1000L)
             response.also { itr ->
                 itr.toRoom()
@@ -37,7 +39,7 @@ class TvShowPagingSource constructor(
             }
             LoadResult.Page(
                 data = response,
-                prevKey = null,
+                prevKey = if (pageNumber > 1) pageNumber - 1 else null,
                 nextKey = pageNumber + 1
             )
         } catch (e: IOException) {
