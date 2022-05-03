@@ -62,6 +62,8 @@ object Libs {
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
+
+
             object Ext {
                 private const val version = "1.1.3"
                 const val junit = "androidx.test.ext:junit-ktx:$version"
@@ -106,5 +108,10 @@ object Libs {
         const val kotlin = "org.mockito.kotlin:mockito-kotlin:4.0.0"
     }
 
-    const val turbine = "app.cash.turbine:turbine:0.7.0"
+    object SquareUp{
+        private const val version = "4.9.3"
+        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
+    }
+
+    const val turbine = "app.cash.turbine:turbine:0.8.0"
 }

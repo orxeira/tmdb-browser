@@ -92,4 +92,6 @@ dependencies {
     androidTestImplementation Libs.AndroidX.Test.Espresso.contrib
     androidTestImplementation Libs.AndroidX.Test.runner
     androidTestImplementation Libs.AndroidX.Test.rules
+    androidTestImplementation Libs.Kotlin.Coroutines.test
+    androidTestImplementation Libs.SquareUp.mockWebServer
 }
