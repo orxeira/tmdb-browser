@@ -15,7 +15,7 @@ class TvShowServerDataSource(
 
     override suspend fun getSimilarShows(id: Int) =
         RemoteConnection.service
-            .getSimilarShows(id,apiKey)
+            .getSimilarShows(id, apiKey)
             .results
             .toDomainModel()
 }

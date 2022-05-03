@@ -7,12 +7,10 @@ import com.orxeira.tmdb_browser.common.addOriginal
 import com.orxeira.tmdb_browser.data.database.TvShowLocalDatasource
 import com.orxeira.tmdb_browser.data.paging.TvShowPagingSource
 import com.orxeira.tmdb_browser.data.server.TvShowRemoteDataSource
-import com.orxeira.tmdb_browser.data.server.toDomainModel
 import com.orxeira.tmdb_browser.domain.TvShow
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.flowOf
 
 /**
  * Main repository that handles where to obtain the data from.
@@ -37,9 +35,10 @@ class TvShowRepository(
     /**
      * Given a tvShow, it gets a list of similar shows.
      */
-    suspend fun getSimilarShows(tvShow: TvShow): Flow<List<TvShow>> = flow {
-        val results = remoteDataSource.getSimilarShows(tvShow.id).addOriginal(tvShow)
-        emit(results)
+    suspend fun getSimilarShows(tvShow: TvShow): Flow<List<TvShow>> {
+        return flowOf (
+            remoteDataSource.getSimilarShows(tvShow.id).addOriginal(tvShow)
+        )
     }
 }
 
