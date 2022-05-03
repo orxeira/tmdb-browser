@@ -1,7 +1,7 @@
 package com.orxeira.tmdb_browser.data.paging
 
 import androidx.paging.PagingSource
-import com.orxeira.tmdb_browser.TvShowFactory
+import com.orxeira.tmdb_browser.common.fakeTvShows
 import com.orxeira.tmdb_browser.data.database.TvShowLocalDatasource
 import com.orxeira.tmdb_browser.data.server.TvShowRemoteDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,14 +18,6 @@ import kotlin.test.junit.JUnitAsserter.assertEquals
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
 class TvShowPagingSourceTest {
-    private val postFactory = TvShowFactory()
-    private val fakeTvShows = listOf(
-        postFactory.createTvShow(),
-        postFactory.createTvShow(),
-        postFactory.createTvShow(),
-        postFactory.createTvShow(),
-        postFactory.createTvShow()
-    )
 
     @Mock
     lateinit var remoteDataSource: TvShowRemoteDataSource

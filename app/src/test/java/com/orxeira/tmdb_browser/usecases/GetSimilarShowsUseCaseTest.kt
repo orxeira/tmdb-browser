@@ -1,6 +1,6 @@
-package com.orxeira.tmdb_browser.data.usecases
+package com.orxeira.tmdb_browser.usecases
 
-import com.orxeira.tmdb_browser.TvShowFactory
+import com.orxeira.tmdb_browser.common.TvShowFactory
 import com.orxeira.tmdb_browser.data.repositories.TvShowRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Test

@@ -3,7 +3,7 @@ package com.orxeira.tmdb_browser.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.orxeira.tmdb_browser.data.usecases.GetTvShowPagingUseCase
+import com.orxeira.tmdb_browser.usecases.GetTvShowPagingUseCase
 import com.orxeira.tmdb_browser.domain.TvShow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

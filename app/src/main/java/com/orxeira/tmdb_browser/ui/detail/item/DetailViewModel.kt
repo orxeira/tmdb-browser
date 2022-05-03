@@ -13,12 +13,12 @@ class DetailViewModel(
     private val tvShow: TvShow
 ) : ViewModel() {
 
-    private val _tvShows = MutableStateFlow(listOf<TvShow>())
-    val tvShows: StateFlow<List<TvShow>> = _tvShows.asStateFlow()
+    private val _tvShow = MutableStateFlow<TvShow?>(null)
+    val tvShows: StateFlow<TvShow?> = _tvShow.asStateFlow()
 
     init {
         viewModelScope.launch {
-            _tvShows.value = listOf(tvShow)
+            _tvShow.value = tvShow
         }
     }
 }

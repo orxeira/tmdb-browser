@@ -1,4 +1,4 @@
-package com.orxeira.tmdb_browser
+package com.orxeira.tmdb_browser.common
 
 import com.orxeira.tmdb_browser.domain.TvShow
 import java.util.concurrent.atomic.AtomicInteger

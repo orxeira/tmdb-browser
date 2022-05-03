@@ -2,7 +2,7 @@ package com.orxeira.tmdb_browser.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.orxeira.tmdb_browser.data.usecases.GetSimilarShowsUseCase
+import com.orxeira.tmdb_browser.usecases.GetSimilarShowsUseCase
 import com.orxeira.tmdb_browser.domain.TvShow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,10 +1,9 @@
 package com.orxeira.tmdb_browser.data.repositories
 
-import com.orxeira.tmdb_browser.TvShowFactory
 import com.orxeira.tmdb_browser.common.addOriginal
+import com.orxeira.tmdb_browser.common.fakeTvShows
 import com.orxeira.tmdb_browser.data.database.TvShowLocalDatasource
 import com.orxeira.tmdb_browser.data.server.TvShowRemoteDataSource
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.runBlocking
@@ -19,14 +18,6 @@ import org.mockito.kotlin.whenever
 
 @RunWith(MockitoJUnitRunner::class)
 class TvShowRepositoryTest {
-    private val postFactory = TvShowFactory()
-    private val fakeTvShows = listOf(
-        postFactory.createTvShow(),
-        postFactory.createTvShow(),
-        postFactory.createTvShow(),
-        postFactory.createTvShow(),
-        postFactory.createTvShow()
-    )
 
     @Mock
     lateinit var remoteDataSource: TvShowRemoteDataSource
@@ -37,12 +28,12 @@ class TvShowRepositoryTest {
     private lateinit var sut: TvShowRepository
 
     @Before
-    fun setup(){
+    fun setup() {
         sut = TvShowRepository(remoteDataSource, localDataSource)
     }
 
     @Test
-    fun `When requesting similar tv shows the remoteDataSource is called`():Unit = runBlocking {
+    fun `When requesting similar tv shows the remoteDataSource is called`(): Unit = runBlocking {
         whenever(remoteDataSource.getSimilarShows(fakeTvShows[4].id)).thenReturn(fakeTvShows)
 
         sut.getSimilarShows(fakeTvShows[4])
@@ -51,7 +42,7 @@ class TvShowRepositoryTest {
     }
 
     @Test
-    fun `getSimilarShows adds original at index 0`():Unit = runBlocking {
+    fun `getSimilarShows adds original at index 0`(): Unit = runBlocking {
         //Define expected value(A list of fakeTvShows with item fakeTvShow[4] at the beginning
         val tvShows = flowOf(fakeTvShows.addOriginal(fakeTvShows[4]))
 

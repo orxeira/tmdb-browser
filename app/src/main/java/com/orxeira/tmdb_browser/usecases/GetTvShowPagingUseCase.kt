@@ -1,4 +1,4 @@
-package com.orxeira.tmdb_browser.data.usecases
+package com.orxeira.tmdb_browser.usecases
 
 import com.orxeira.tmdb_browser.data.repositories.TvShowRepository
 

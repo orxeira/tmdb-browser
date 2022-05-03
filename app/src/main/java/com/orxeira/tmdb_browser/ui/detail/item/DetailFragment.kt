@@ -126,7 +126,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         viewLifecycleOwner.lifecycleScope.launch {
             launch {
                 viewModel.tvShows.collectLatest {
-                    binding.tvShow = it[0]
+                    binding.tvShow = it
                 }
             }
         }

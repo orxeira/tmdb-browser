@@ -8,8 +8,8 @@ import com.orxeira.tmdb_browser.data.database.TvShowRoomDatasource
 import com.orxeira.tmdb_browser.data.repositories.TvShowRepository
 import com.orxeira.tmdb_browser.data.server.TvShowRemoteDataSource
 import com.orxeira.tmdb_browser.data.server.TvShowServerDataSource
-import com.orxeira.tmdb_browser.data.usecases.GetSimilarShowsUseCase
-import com.orxeira.tmdb_browser.data.usecases.GetTvShowPagingUseCase
+import com.orxeira.tmdb_browser.usecases.GetSimilarShowsUseCase
+import com.orxeira.tmdb_browser.usecases.GetTvShowPagingUseCase
 import com.orxeira.tmdb_browser.domain.TvShow
 import com.orxeira.tmdb_browser.ui.detail.DetailListViewModel
 import com.orxeira.tmdb_browser.ui.detail.item.DetailViewModel
